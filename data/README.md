@@ -1,6 +1,6 @@
 # /data
 
-.CSV file for each event.
+.csv file for each event.
 
 ## 2023 Schedule
 1. Daytona 24
