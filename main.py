@@ -9,10 +9,11 @@ data_race = "./data/10_indy/IWSC_Indianapolis_Race.csv"
 
 def get_plot():
     """Get a plot for the provided csv file"""
+    data_filter = None
     # data_filter = ("Driver", "Sebastien Bourdais")
     # data_filter = ("Class", "GTP")
-    data_filter = None
     df = analysis.getDataFrameFromFile(data_race, filter=data_filter)
+    print(df.to_string())
     plot = analysis.getPlotFromDataFrame(df)
 
 

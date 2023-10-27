@@ -1,23 +1,17 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 from src import utilities
+from config import lap_plot
 
 
-def getPlotFromDataFrame(df):
+def getPlotFromDataFrame(df, plot_list=lap_plot.data_to_display):
     x_column = "Lap"
     y_column = "Seconds"
-    data_to_display = [
-        "Lap Time",
-        "S01",
-        "S02",
-        "S03",
-    ]
-
     highlight_condition = df["Flag"] == "Yellow"
 
     plt.figure(figsize=(10, 6))
 
-    for y in data_to_display:
+    for y in plot_list:
         df[y_column] = df[y].apply(utilities.lap_time_to_seconds)
         plt.plot(df[x_column], df[y_column], marker="o", linestyle="-", label=y)
 
