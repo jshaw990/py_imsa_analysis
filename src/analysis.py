@@ -1,32 +1,80 @@
+import plotly.express as px
+import plotly.graph_objects as go
+
+import traceback
 import matplotlib.pyplot as plt
 import pandas as pd
 from src import utilities
 from config import lap_plot
 
 
+def getPlotFromPlotly(df):
+    try:
+        y_column = "Lap time in seconds"
+        fcy_condition = df["Flag"] == "Yellow"
+        pit_condition = df["Location"] == "Pit"
+
+        df[y_column] = df["Lap Time"].apply(utilities.lap_time_to_seconds)
+        fig = px.line(
+            df,
+            x="Lap",
+            y=df[y_column],
+            markers=True,
+            color="Car",
+            range_y=[75, 90],
+        )
+
+        for i, is_fcy in enumerate(fcy_condition):
+            if is_fcy:
+                lap = df.iloc[i]
+                x_start = lap["Lap"] - 0.25
+                x_end = lap["Lap"] + 0.25
+
+                fig.add_vrect(
+                    x0=x_start,
+                    x1=x_end,
+                    layer="below",
+                    line_width=0,
+                    fillcolor="yellow",
+                    opacity=0.5,
+                )
+
+        fig.show()
+    except Exception as e:
+        traceback.print_exc()
+        print(f"An error occurred: [{type(e)}] {e}")
+
+
 def getPlotFromDataFrame(df, plot_list=lap_plot.data_to_display):
-    x_column = "Lap"
-    y_column = "Seconds"
-    highlight_condition = df["Flag"] == "Yellow"
+    try:
+        x_column = "Lap"
+        y_column = "Lap time in seconds"
+        highlight_condition = df["Flag"] == "Yellow"
 
-    plt.figure(figsize=(10, 6))
+        plt.figure(figsize=(10, 6))
 
-    for y in plot_list:
-        df[y_column] = df[y].apply(utilities.lap_time_to_seconds)
-        plt.plot(df[x_column], df[y_column], marker="o", linestyle="-", label=y)
+        for y in plot_list:
+            df[y_column] = df[y].apply(utilities.lap_time_to_seconds)
+            plt.plot(df[x_column], df[y_column], marker="o", linestyle="-", label=y)
 
-    for i, is_highlighted in enumerate(highlight_condition):
-        if is_highlighted:
-            lap = df.loc[i, "Lap"]
-            plt.axvspan(lap - 0.25, lap + 0.25, color="yellow", alpha=0.5)
+        for i, is_highlighted in enumerate(highlight_condition):
+            if is_highlighted:
+                lap = df.iloc[i]
+                plt.axvspan(
+                    lap["Lap"] - 0.25, lap["Lap"] + 0.25, color="yellow", alpha=0.5
+                )
 
-    # Create a line plot
-    plt.title(f"Seconds vs Lap")
-    plt.xlabel(x_column)
-    plt.ylabel(y_column)
-    plt.legend()
-    plt.grid(True)
-    plt.show()
+        # Create a line plot
+        plt.title(f"Seconds vs Lap")
+        plt.xlabel(x_column)
+        plt.ylabel(y_column)
+        plt.legend()
+        plt.grid(True)
+        plt.show()
+    except Exception as e:
+        # print(f"An error occurred: {str(e)}")
+        traceback.print_exc()
+        print(f"An error occurred: [{type(e)}] {e}")
 
 
 def getDataFrameFromFile(file_path, filter=None):

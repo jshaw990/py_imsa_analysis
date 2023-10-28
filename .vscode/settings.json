@@ -1,4 +1,7 @@
 {
+	"[csv][dynamic csv][tsv][csv (semicolon)]": {
+		"editor.stickyScroll.enabled": true
+	},
 	"python.analysis.autoFormatStrings": true,
 	"[python]": {
 		"editor.defaultFormatter": "ms-python.black-formatter",
