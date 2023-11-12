@@ -4,25 +4,54 @@ import plotly.graph_objects as go
 import traceback
 import matplotlib.pyplot as plt
 import pandas as pd
+from config import lap_plot, imsa
+
 from src import utilities
-from config import lap_plot
+
+__TEAM_COLORS__ = {
+    1: "#ffd50b",
+    2: "#1f3e98",
+    5: "#ffe200",
+    6: "#ed1c24",  # '#ffffff'
+    7: "#0b0a0a",
+    10: "#007dc5",
+    24: "#1569b3",
+    25: "#e12c26",
+    31: "#e8242a",
+    59: "#ff0000",
+    60: "#e61f8e",
+}
 
 
 def getPlotFromPlotly(df):
     try:
+        x_column = "Lap number"
         y_column = "Lap time in seconds"
         fcy_condition = df["Flag"] == "Yellow"
         pit_condition = df["Location"] == "Pit"
 
         df[y_column] = df["Lap Time"].apply(utilities.lap_time_to_seconds)
+        # class_color = df["Class"].apply(imsa.get_color_for_class)
+        # team_color = df["Car"].apply(imsa.get_color_for_team)
+        data_tooltip = ["Car", "Driver", "Lap", "Lap Time", "Flag", "Location"]
+
+        # print(f'car => {df["Car"]}')
+
         fig = px.line(
             df,
             x="Lap",
             y=df[y_column],
+            line_group=df["Car"],
             markers=True,
-            color="Car",
-            range_y=[75, 90],
+            color=df["Car"],
+            color_discrete_map=__TEAM_COLORS__,
+            range_y=[75, 83],
+            hover_data=data_tooltip,
+            title="",
         )
+
+        # fig.update_traces(line_color=class_color)
+        # fig.update_traces(marker=dict(color=team_color))
 
         for i, is_fcy in enumerate(fcy_condition):
             if is_fcy:

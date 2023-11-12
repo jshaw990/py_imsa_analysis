@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module utilities</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>utilities</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/jaydenshaw/dev/py-imsa-analysis/src/utilities.py">/Users/jaydenshaw/dev/py-imsa-analysis/src/utilities.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="json.html">json</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-check_dev_mode"><strong>check_dev_mode</strong></a>()</dt></dl>
+ <dl><dt><a name="-check_for_current_date"><strong>check_for_current_date</strong></a>(date_string)</dt><dd><tt>Check&nbsp;if&nbsp;provided&nbsp;date_string&nbsp;is&nbsp;today&nbsp;(True),<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;bool&nbsp;:&nbsp;if&nbsp;True&nbsp;-&nbsp;date&nbsp;is&nbsp;today,&nbsp;if&nbsp;False&nbsp;-&nbsp;date&nbsp;is&nbsp;in&nbsp;the&nbsp;past,&nbsp;if&nbsp;None&nbsp;-&nbsp;Date&nbsp;is&nbsp;in&nbsp;the&nbsp;future&nbsp;or&nbsp;invalid<br>
+&nbsp;<br>
+Raises:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ValueError:&nbsp;Date&nbsp;is&nbsp;in&nbsp;the&nbsp;future<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Exception:&nbsp;Date&nbsp;is&nbsp;invalid</tt></dd></dl>
+ <dl><dt><a name="-get_formatted_time"><strong>get_formatted_time</strong></a>()</dt><dd><tt>Create&nbsp;a&nbsp;datetime&nbsp;object&nbsp;for&nbsp;the&nbsp;current&nbsp;time<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(str)&nbsp;datetime&nbsp;object&nbsp;like:&nbsp;'Oct&nbsp;25,&nbsp;2023&nbsp;@&nbsp;23:15:30'</tt></dd></dl>
+ <dl><dt><a name="-get_unix"><strong>get_unix</strong></a>()</dt><dd><tt>Get&nbsp;the&nbsp;current&nbsp;Unix&nbsp;Time<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;Unix&nbsp;Timestamp&nbsp;in&nbsp;seconds&nbsp;as&nbsp;a&nbsp;string</tt></dd></dl>
+ <dl><dt><a name="-get_utc_datetime_string"><strong>get_utc_datetime_string</strong></a>()</dt></dl>
+ <dl><dt><a name="-iterate_date_string"><strong>iterate_date_string</strong></a>(start_date, num)</dt><dd><tt>Convert&nbsp;the&nbsp;provided&nbsp;date&nbsp;string&nbsp;into&nbsp;a&nbsp;date&nbsp;object,<br>
+SUBTRACT&nbsp;the&nbsp;provided&nbsp;number&nbsp;of&nbsp;days,<br>
+and&nbsp;return&nbsp;the&nbsp;resultiing&nbsp;date&nbsp;object&nbsp;in&nbsp;a&nbsp;string.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;start_date(str)&nbsp;:&nbsp;start&nbsp;date&nbsp;in&nbsp;the&nbsp;format&nbsp;of&nbsp;'2023-09-20'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;num(int)&nbsp;:&nbsp;number&nbsp;of&nbsp;days&nbsp;to&nbsp;subtract&nbsp;from&nbsp;the&nbsp;start_date<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;:&nbsp;date&nbsp;which&nbsp;is&nbsp;num&nbsp;days&nbsp;different&nbsp;than&nbsp;the&nbsp;start_date</tt></dd></dl>
+ <dl><dt><a name="-lap_time_to_seconds"><strong>lap_time_to_seconds</strong></a>(lap_time_str)</dt><dd><tt>Get&nbsp;a&nbsp;float&nbsp;for&nbsp;'Lap&nbsp;Time'&nbsp;column&nbsp;from&nbsp;dataframe<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;lap_time_str&nbsp;(str)&nbsp;-&nbsp;Lap&nbsp;Time&nbsp;string&nbsp;as&nbsp;MM:SS.ms<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;Lap&nbsp;Time&nbsp;converted&nbsp;to&nbsp;a&nbsp;float</tt></dd></dl>
+ <dl><dt><a name="-read_data_from_file"><strong>read_data_from_file</strong></a>(file_name='data.txt')</dt><dd><tt>Read&nbsp;data&nbsp;from&nbsp;the&nbsp;file_name&nbsp;provided&nbsp;and&nbsp;return&nbsp;it&nbsp;in&nbsp;a&nbsp;dictionary<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;file_name(str)&nbsp;:&nbsp;file&nbsp;name&nbsp;to&nbsp;be&nbsp;returned<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;file's&nbsp;data&nbsp;in&nbsp;a&nbsp;dictionary</tt></dd></dl>
+ <dl><dt><a name="-write_data_to_file"><strong>write_data_to_file</strong></a>(data, file_name='data.txt')</dt><dd><tt>Write&nbsp;provided&nbsp;data&nbsp;to&nbsp;a&nbsp;text&nbsp;file<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data(str)&nbsp;:&nbsp;data&nbsp;to&nbsp;be&nbsp;written&nbsp;to&nbsp;the&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;file_name(str)&nbsp;:&nbsp;file&nbsp;name&nbsp;for&nbsp;the&nbsp;created&nbsp;file&nbsp;(default&nbsp;=&nbsp;'data.txt')</tt></dd></dl>
+</td></tr></table>
+</body></html>

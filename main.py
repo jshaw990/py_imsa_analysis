@@ -13,7 +13,7 @@ def get_plot():
     # data_filter = ("Driver", "Sebastien Bourdais")
     data_filter = ("Class", "GTP")
     df = analysis.getDataFrameFromFile(data_race, filter=data_filter)
-    print(df.head(50))
+    # print(df.head(50))
     # plot = analysis.getPlotFromDataFrame(df)
     plot = analysis.getPlotFromPlotly(df)
 

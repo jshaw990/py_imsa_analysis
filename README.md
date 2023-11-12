@@ -17,6 +17,17 @@ Jayden Shaw\
 
 Blah blah
 
+## Commands 
+
+#### Execute the app
+
+Run the app
+
+```bash
+# Execute the python app
+py-imsa-analysis % python3 main.py
+```
+
 ## Useful References
 
 - [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
